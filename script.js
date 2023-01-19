@@ -5,30 +5,35 @@
       nombre: "Pantalon",
       cantidad:1,
       precio: 8500,
+      img : "img/pantalon.jpg"
     },
     {
       id: 2,
-      nombre: "Campera",
+      nombre: "Buzo",
       cantidad:1,
       precio: 15000,
+      img:"img/buzo.jpg",
     },
     {
       id: 3,
-      nombre: "Remera",
+      nombre: "Camiseta",
       cantidad:1,
-      precio: 3500,
+      precio: 22000,
+      img :"img/camiseta.jpg"
     },
     {
       id: 4,
       nombre: "Zapatillas",
       cantidad:1,
       precio: 22000,
+      img :"img/zapatillas1.jpg",
     },
     {
       id: 5,
       nombre: "Mochila",
       cantidad:1,
       precio: 11000,
+      img: "img/accesorios1 (4).jpg",
     },
   ];
   
@@ -44,13 +49,17 @@
 
 
   indumentaria.forEach((prod) => {
-    const {id, nombre, precio, cantidad} = prod
-    contenedor.innerHTML +=` <div>
-    <h5>${nombre}</h5>
-    <p>${precio}</p>
-    <p>${cantidad}</p>
-    <button onclick="agregarProducto(${id})">Comprar</button>
-    </div>
+    const {id, nombre, precio, cantidad,img} = prod
+    contenedor.innerHTML +=` <div class= "col-sm-12 col-md-6 col-lg-3">
+    
+    <div class="card " style="width: 18rem;">
+   <img src="${img}" class="card-img-top" alt="${cantidad}">
+   <div class="card-body">
+    <h5 class="card-title">${nombre}</h5>
+    <p class="card-text">${precio}</p>
+    
+    <button class="btn btn-primary" onclick="agregarProducto(${id})">Comprar Producto</button>
+    </div> 
     `
      
   });
@@ -101,13 +110,14 @@ const verCarrito= () => {
   modalBody.innerHTML=""
 
   carrito.forEach((prod)=>{
-    const {id, nombre, precio, cantidad}= prod
+    const {id, nombre, precio, cantidad, img }= prod
     modalBody.innerHTML +=`
     <div class="modal-contenedor">
       <div>
       <p>Producto: ${nombre}</p>
-    <p>Precio: ${precio}</p>
-    <p>Cantidad :${cantidad}</p>
+      <img src="${img}" class="card-img-top" alt="">
+     <p>Precio: ${precio}</p>
+     <p>Cantidad :${cantidad}</p>
     <button class="btn btn-danger"  onclick="eliminarProducto(${id})">Eliminar producto</button>
       </div>
     </div>
