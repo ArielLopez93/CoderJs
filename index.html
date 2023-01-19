@@ -4,24 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
     <title>Document</title>
 </head>
 
 <body>
-    <h1 id="MiTitulo">CARRITO</h1>
-    <P>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit eaque magni quidem, harum consectetur qui impedit suscipit odit quos aliquid voluptatibus. Corrupti quod, omnis ratione quisquam pariatur sequi incidunt dignissimos.</P>
-   
-    <main>
-      <div id="contenedor"></div>
-    </main>
+  <nav class="navbar navbar-light bg-dark min-vw-100">
+    <h2 class="p-3 text-white">Ecommerce</h2>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a
+          class="nav-link text-white"
+          data-bs-toggle="modal"
+          data-bs-target="#modal"
+        >
+          <i class="bi bi-cart mx-5" id="carritoContenedor">0</i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="row mt-5" id="contenedor"></div>
+</main>
 
- <div>
-  <h5></h5>
-  <p></p>
-  <p></p>
-  <button></button>
- </div>
-  <script src="script.js"></script>  
-</body>
+
+<div class="container-xl">
+  <div class="modal" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Carrito</h5>
+          <button
+            type="button"
+            class="close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" id="vaciarCarrito">
+            Vaciar carrito
+          </button>
+          <button type="button" id="procesarCompra" class="btn btn-primary">
+            Continuar compra
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+
+          <span>Precio total:</span>
+          <p class="text-center" id="precioTotal"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+      <div id="contenedor"></div>
+
+ </body>
+ <script src="script.js"></script>
+ <script src="bootstrap.bundle.min.js"></script>
+ <script src="http://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </html>

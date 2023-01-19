@@ -36,76 +36,100 @@
   let carrito= []
   
   const contenedor = document.querySelector("#contenedor");
+  const carritoContador = document.querySelector("#carritoContenedor")
+  const vaciarCarrito = document.querySelector ("#vaciarCarrito")
+  const precioTotal = document.querySelector("#precioTotal")
+  const procesarCompra = document.querySelector("#procesarCompra")
+
+
+
   indumentaria.forEach((prod) => {
     const {id, nombre, precio, cantidad} = prod
     contenedor.innerHTML +=` <div>
     <h5>${nombre}</h5>
     <p>${precio}</p>
     <p>${cantidad}</p>
-    <button onclick="agregarProducto(${id})">agregar al carrito</button>
+    <button onclick="agregarProducto(${id})">Comprar</button>
     </div>
     `
-    
-    
+     
   });
 
+  procesarCompra.addEventListener ("click",()=>{
+    if(carrito.length===0){
+      Swal.fire({
+        title: "¡Tu carrito está vacio!",
+        text: "Compra algo si quieres continuar",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+    } else {
+      Swal.fire({
+        title: "¡Compra finalizada con exito!",
+        text: "Muchas gracias por habernos elegido",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+})
+    }
+  });
+
+
+  vaciarCarrito.addEventListener("click",()=>{
+    carrito.length = []
+    verCarrito()
+
+  })
+
   function agregarProducto(id){
+
+    const igual = carrito.some (prod => prod.id=== id)
+    if(igual){
+      const prod = carrito.map (prod =>{
+        if(prod.id=== id){
+          prod.cantidad++
+        }
+      })
+    } else {
     const item = indumentaria.find((prod)=>prod.id === id);
-    carrito.push(item)
-    console.log(item)
+    carrito.push(item)}
+    verCarrito()
   }
 
-  /*alert("Bienvenido a ANL indumentaria deportiva")*/
-  
-  
-  /*let seleccion = prompt("¿Usted quiere comprar algo? escriba si o no")*/
-  
-  
-  /*while (seleccion !="si" && seleccion !="no") {
-    alert("Por favor ingrese una respuesta valida")
-    seleccion = prompt ("¿Usted quiere comprar algo? escriba si o no")
-    }
-    
-    if (seleccion =="si") {
-      let stockIndumentaria = indumentaria.map((indumentaria)=> indumentaria.nombre + " " + "$"+ indumentaria.precio);
-      alert(stockIndumentaria.join ("//"))
-    }
-    else if (seleccion =="no") {
-      alert("Muchas gracias por habernos visitado")
-    }
-    while (seleccion =="si") {
-      let indumentaria = prompt ("Agrega a tu carrito la indumentaria que quieras")
-      
-      if (indumentaria == "Pantalon" || indumentaria == "Campera" ||indumentaria == "Remera" ||indumentaria == "Zapatillas" ||indumentaria == "Mochila" ){
-        switch (indumentaria) {
-          case "Pantalon":
-            precio = 8500;
-            break;
-            case "Campera":
-            precio = 15000;
-            break;
-            case "Remera":
-            precio = 3500;
-            break;
-            case "Zapatillas":
-            precio = 22000;
-            break;
-            case "Mochila":
-            precio = 11000;
-            break;
-            default:
-            break;
-        }
-      }
-      let unidades = parseInt(prompt("¿Cuantas unidades quiere llevar?"))
-      seleccion = prompt("¿Quiere agregar otra indumentaria a su carrito?");
-      carrito.push({indumentaria, unidades, precio})
-  
-  
-      
-    }
-    alert("Muchas gracias por habernos elejido")
-    console.log(carrito);*/
-  
+const verCarrito= () => {
+  const modalBody = document.querySelector (".modal .modal-body")
 
-  
+  modalBody.innerHTML=""
+
+  carrito.forEach((prod)=>{
+    const {id, nombre, precio, cantidad}= prod
+    modalBody.innerHTML +=`
+    <div class="modal-contenedor">
+      <div>
+      <p>Producto: ${nombre}</p>
+    <p>Precio: ${precio}</p>
+    <p>Cantidad :${cantidad}</p>
+    <button class="btn btn-danger"  onclick="eliminarProducto(${id})">Eliminar producto</button>
+      </div>
+    </div>
+    
+
+    `;
+  })
+
+  carritoContador.textContent = carrito.length
+
+  precioTotal.innerText = carrito.reduce ((acc,prod)=> acc + prod.cantidad * prod.precio, 0)
+
+  guardarStorage()
+
+}
+
+function eliminarProducto(id){
+  const induId = id
+  carrito = carrito.filter((indu)=> indu.id !== induId)
+  verCarrito()
+}
+
+function guardarStorage(){
+  localStorage.setItem("guardar", JSON.stringify(carrito))
+}
