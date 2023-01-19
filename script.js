@@ -56,7 +56,7 @@
    <img src="${img}" class="card-img-top" alt="${cantidad}">
    <div class="card-body">
     <h5 class="card-title">${nombre}</h5>
-    <p class="card-text">${precio}</p>
+    <p class="card-text">$ ${precio}</p>
     
     <button class="btn btn-primary" onclick="agregarProducto(${id})">Comprar Producto</button>
     </div> 
@@ -116,7 +116,7 @@ const verCarrito= () => {
       <div>
       <p>Producto: ${nombre}</p>
       <img src="${img}" class="card-img-top" alt="">
-     <p>Precio: ${precio}</p>
+     <p>Precio:$ ${precio}</p>
      <p>Cantidad :${cantidad}</p>
     <button class="btn btn-danger"  onclick="eliminarProducto(${id})">Eliminar producto</button>
       </div>
