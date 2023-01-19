@@ -53,10 +53,11 @@
     contenedor.innerHTML +=` <div class= "col-sm-12 col-md-6 col-lg-3">
     
     <div class="card " style="width: 18rem;">
-   <img src="${img}" class="card-img-top" alt="${cantidad}">
+   <img src="${img}" class="card-img-top" alt="">
    <div class="card-body">
     <h5 class="card-title">${nombre}</h5>
     <p class="card-text">$ ${precio}</p>
+    <p class="card-text">${cantidad}</p>
     
     <button class="btn btn-primary" onclick="agregarProducto(${id})">Comprar Producto</button>
     </div> 
